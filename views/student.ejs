@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Center Student</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+  <!-- pt-serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <!-- style sheet -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="student-style.css">
+</head>
+<body>
+  
+
+  <form action="POST" id="filter-form">
+    <h2>Select Subject</h2>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+      <input type="radio" name="math-subject" value="algebra" id="algebra"> 
+      <label for="algebra">Algebra</label><br>
+  
+      <input type="radio" name="math-subject" value="geometry" id="geometry"> 
+      <label for="geometry">Geometry</label><br>
+  
+      <input type="radio" name="math-subject" value="trigonometry" id="trigonometry"> 
+      <label for="trigonometry">Trigonometry</label><br>
+  
+      <input type="radio" name="math-subject" value="calculus" id="calculus"> 
+      <label for="calculus">Calculus</label><br>
+  
+      <input type="radio" name="math-subject" value="statistics" id="statistics"> 
+      <label for="statistics">Statistics</label><br>
+  
+      <input type="radio" name="math-subject" value="probability" id="probability"> 
+      <label for="probability">Probability</label><br>
+  
+      <input type="radio" name="math-subject" value="linear-algebra" id="linear-algebra"> 
+      <label for="linear-algebra">Linear Algebra</label><br>
+  
+      <input type="radio" name="math-subject" value="number-theory" id="number-theory"> 
+      <label for="number-theory">Number Theory</label><br>
+  
+      <input type="radio" name="math-subject" value="discrete-math" id="discrete-math"> 
+      <label for="discrete-math">Discrete Math</label><br>
+  
+      <input type="radio" name="math-subject" value="differential-equations" id="differential-equations"> 
+      <label for="differential-equations">Differential Equations</label><br>
+  
+      <input type="radio" name="math-subject" value="real-analysis" id="real-analysis"> 
+      <label for="real-analysis">Real Analysis</label><br>
+  
+      <input type="radio" name="math-subject" value="complex-analysis" id="complex-analysis"> 
+      <label for="complex-analysis">Complex Analysis</label><br>
+  
+      <input type="radio" name="math-subject" value="topology" id="topology"> 
+      <label for="topology">Topology</label><br>
+  
+      <input type="radio" name="math-subject" value="mathematical-logic" id="mathematical-logic"> 
+      <label for="mathematical-logic">Mathematical Logic</label><br>
+  
+      <input type="radio" name="math-subject" value="set-theory" id="set-theory"> 
+      <label for="set-theory">Set Theory</label><br>
+  
+      <input type="radio" name="math-subject" value="combinatorics" id="combinatorics"> 
+      <label for="combinatorics">Combinatorics</label><br>
+  
+      <input type="radio" name="math-subject" value="game-theory" id="game-theory"> 
+      <label for="game-theory">Game Theory</label><br>
+  
+      <input type="radio" name="math-subject" value="operations-research" id="operations-research"> 
+      <label for="operations-research">Operations Research</label><br>
+  
+      <input type="radio" name="math-subject" value="mathematical-modeling" id="mathematical-modeling"> 
+      <label for="mathematical-modeling">Mathematical Modeling</label><br>
+  
+      <input type="radio" name="math-subject" value="financial-math" id="financial-math"> 
+      <label for="financial-math">Financial Mathematics</label><br>
+    </div>
+
+    <h2>Select Fellow</h2>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+      <input type="radio" name="person" value="smith,john" id="smith-john"> 
+      <label for="smith-john">Smith,John</label><br>
+  
+      <input type="radio" name="person" value="doe,jane" id="doe-jane"> 
+      <label for="doe-jane">Doe,Jane</label><br>
+  
+      <input type="radio" name="person" value="johnson,mike" id="johnson-mike"> 
+      <label for="johnson-mike">Johnson,Mike</label><br>
+  
+      <input type="radio" name="person" value="williams,sarah" id="williams-sarah"> 
+      <label for="williams-sarah">Williams,Sarah</label><br>
+  
+      <input type="radio" name="person" value="brown,chris" id="brown-chris"> 
+      <label for="brown-chris">Brown,Chris</label><br>
+  
+      <input type="radio" name="person" value="jones,emily" id="jones-emily"> 
+      <label for="jones-emily">Jones,Emily</label><br>
+  
+      <input type="radio" name="person" value="miller,david" id="miller-david"> 
+      <label for="miller-david">Miller,David</label><br>
+  
+      <input type="radio" name="person" value="davis,anna" id="davis-anna"> 
+      <label for="davis-anna">Davis,Anna</label><br>
+  
+      <input type="radio" name="person" value="garcia,daniel" id="garcia-daniel"> 
+      <label for="garcia-daniel">Garcia,Daniel</label><br>
+  
+      <input type="radio" name="person" value="rodriguez,laura" id="rodriguez-laura"> 
+      <label for="rodriguez-laura">Rodriguez,Laura</label><br>
+  
+      <input type="radio" name="person" value="martinez,kevin" id="martinez-kevin"> 
+      <label for="martinez-kevin">Martinez,Kevin</label><br>
+  
+      <input type="radio" name="person" value="hernandez,lisa" id="hernandez-lisa"> 
+      <label for="hernandez-lisa">Hernandez,Lisa</label><br>
+  
+      <input type="radio" name="person" value="lopez,alex" id="lopez-alex"> 
+      <label for="lopez-alex">Lopez,Alex</label><br>
+  
+      <input type="radio" name="person" value="gonzalez,nina" id="gonzalez-nina"> 
+      <label for="gonzalez-nina">Gonzalez,Nina</label><br>
+  
+      <input type="radio" name="person" value="wilson,eric" id="wilson-eric"> 
+      <label for="wilson-eric">Wilson,Eric</label><br>
+  
+      <input type="radio" name="person" value="anderson,zoe" id="anderson-zoe"> 
+      <label for="anderson-zoe">Anderson,Zoe</label><br>
+  
+      <input type="radio" name="person" value="thomas,brad" id="thomas-brad"> 
+      <label for="thomas-brad">Thomas,Brad</label><br>
+  
+      <input type="radio" name="person" value="taylor,megan" id="taylor-megan"> 
+      <label for="taylor-megan">Taylor,Megan</label><br>
+  
+      <input type="radio" name="person" value="moore,ryan" id="moore-ryan"> 
+      <label for="moore-ryan">Moore,Ryan</label><br>
+  
+      <input type="radio" name="person" value="jackson,kate" id="jackson-kate"> 
+      <label for="jackson-kate">Jackson,Kate</label><br>
+    </div>
+
+    <h2>Select Time</h2>
+    <label for="start-date">Start</label>
+      <input type="date" name="start-date" id="start-date">
+
+    <label for="end-date">End</label>
+      <input type="date" name="end-date" id="end-date">
+
+    <label for="rotation">Rotation</label>
+      <select name="rotation" id="rotation">
+        <option value="all">all</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+
+    <label for="time">Time</label>
+      <select name="time" id="time">
+        <option value="all">All</option>
+        <option value="morning">Morning</option>
+        <option value="lunch">Lunch</option>
+        <option value="afterSchool">After School</option>
+      </select>
+  </form>
+
+  
+
+
+  <div id="main-page">
+    <h1>Make an Appointment</h1>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item show">
+
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            4/16/2025 Morning Day:2
+          </button>
+        </h2>
+
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+            <div class="card" >
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Macomber, Caroline</strong>  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Schedule Meeting
+                  </button>
+                </li>
+                <li class="list-group-item">
+                  <strong>Mermelstein, Maddie</strong> <button class="btn btn-danger">Schedule Meeting</button>
+                  
+                </li>
+                <li class="list-group-item">
+                  <strong>Someone, Someone</strong> 
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            4/16/2025 Lunch Day:2
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="card" >
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Macomber, Caroline:</strong> Free <button class="btn btn-danger">Absent</button>
+                </li>
+                <li class="list-group-item">
+                  <strong>Mermelstein, Maddie:</strong> meeting with Sabrina 
+
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Show Details
+                  </button>
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <strong>Someone, Someone:</strong> absent
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            4/16/2025 Afterschool Day: 2
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="card" >
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Macomber, Caroline:</strong> Free <button class="btn btn-danger">Absent</button>
+                </li>
+                <li class="list-group-item">
+                  <strong>Mermelstein, Maddie:</strong> meeting with Sabrina 
+
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Show Details
+                  </button>
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <strong>Someone, Someone:</strong> absent
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+.scrollspy-example {
+  position: relative;
+  height: 10rem;
+  overflow-y: auto;
+}
+
+#filter-form {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  position: fixed;
+}
+
+
+#main-page {
+  margin-left: 20%;
+}
+
+/* Remove margin from Scrollspy */
+.scrollspy-example {
+  position: relative;
+  height: 10rem;
+  overflow-y: auto;
+}
+
+
+/* Add top and bottom margin to #filter-form */
+#filter-form {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  position: fixed;
+}
+
+
+/* General style for labels with radio buttons */
+#filter-form input[type="radio"] {
+  display: none; /* hide native radio */
+}
+
+#filter-form label {
+  display: block;
+  /* padding: 0.4rem 0.8rem;
+  margin-bottom: 0.4rem; */
+  
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  background-color: #ffffff;
+  color: #1B3D6D;
+  font-weight: 500;
+}
+
+/* Selected style */
+#filter-form input[type="radio"]:checked + label {
+  background-color: #8EBA66; /* primary */
+  border-color: #47763B;     /* secondary */
+  color: white;
+}
+
+
