@@ -9,7 +9,7 @@ router.post('/', createExample);
 router.get('/fellow', loadFellow);
 router.get('/Ms-Dahl', loadDahl);
 router.get('/student', loadStudent);
-router.get('/teacher', loadTeacher);
+router.get('/teacher', loadTeacher); //change this to a different name
 
 
 
