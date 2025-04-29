@@ -29,6 +29,13 @@ h1 {
   display: flex;
   background-color: #47763B;
 }
+
+#select-2-continue {
+  position: fixed;
+  left: 42%;
+  top: 45%;
+}
+
 /* Remove margin from Scrollspy */
 .scrollspy-example {
   position: relative;
@@ -38,7 +45,7 @@ h1 {
 
 #filter-form {
   display: flex;
-  background-color: #ced4da;
+  background-color:#8EBA66;
   flex-direction: column;
   justify-content: space-evenly;
   position: fixed;
