@@ -49,15 +49,10 @@ h1 {
   flex-direction: column;
   justify-content: space-evenly;
   position: fixed;
-  /* border-radius: 5px; */
-  /* margin: 2px; */
   display: flex;
   width: 20%;
   height: 100%;
-  /* padding-bottom: .5%;
-  padding-left: .5%; */
   padding-right: .5%;
-  /* border: 1px, solid, black; */
 }
 
 

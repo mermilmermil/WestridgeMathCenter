@@ -61,7 +61,7 @@ a {
 
 /* Additional: Nice focus ring for accessibility */
 button.btn-primary:focus {
-  outline: 3px solid #FFC907; /* Yellow secondary accent */
+  outline: 3px solid yellow ; /* Yellow secondary accent */
   outline-offset: 3px;
 }
 
