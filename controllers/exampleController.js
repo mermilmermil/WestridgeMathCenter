@@ -1,4 +1,4 @@
-import Example from '../models/Example.js';
+import Example from '../models/CalDate.js';
 
 export const getExamples = async (req, res) => {
   try {
@@ -55,4 +55,14 @@ export const loadTeacher = async (req, res) => {
   } catch (err) {
     res.status(500).send('Server Error');
   }
-};
+}; 
+
+
+// create csv reader for rotation days
+//     create csv for next week rotation days
+
+// create init for mongo with date and student in each day (after csv reader)
+
+// populate days from date.now on to forever (or max days)
+
+// create csv reader for student availability (init)
