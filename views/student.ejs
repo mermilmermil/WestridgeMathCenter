@@ -153,24 +153,21 @@
     <label for="end-date">End</label>
       <input type="date" name="end-date" id="end-date">
 
-    <label for="rotation">Rotation</label>
+    <label for="rotation">Meeting Time</label>
       <select name="rotation" id="rotation">
         <option value="all">all</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+        <option value="1">Day 1 Lunch</option>
+        <option value="2">Day 2 Lunch</option>
+        <option value="3">Day 3 Lunch</option>
+        <option value="4">Day 4 Lunch</option>
+        <option value="5">Day 5 Lunch</option>
+        <option value="6">Day 6 Lunch</option>
+        <option value="w-am">Wednesday Morning</option>
+        <option value="tu-am">Tuesday Morning</option>
+        <option value="th-pm">Thursday Afternoon</option>
       </select>
 
-    <label for="time">Time</label>
-      <select name="time" id="time">
-        <option value="all">All</option>
-        <option value="morning">Morning</option>
-        <option value="lunch">Lunch</option>
-        <option value="afterSchool">After School</option>
-      </select>
+    
   </form>
 
   
@@ -184,8 +181,8 @@
       <h1>Make an Appointment</h1>
     </div>
     
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item show">
+    <!-- <div class="accordion" id="accordionExample">
+      <div class="accordion-item show"> 
 
         <h2 class="accordion-header">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -215,75 +212,15 @@
 
           </div>
         </div>
-      </div>
+      </div> 
 
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            4/16/2025 Lunch Day:2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div class="card" >
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <strong>Macomber, Caroline:</strong> Free <button class="btn btn-danger">Absent</button>
-                </li>
-                <li class="list-group-item">
-                  <strong>Mermelstein, Maddie:</strong> meeting with Sabrina 
+      
 
-                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Show Details
-                  </button>
-                  <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <strong>Someone, Someone:</strong> absent
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div> -->
 
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            4/16/2025 Afterschool Day: 2
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div class="card" >
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <strong>Macomber, Caroline:</strong> Free <button class="btn btn-danger">Absent</button>
-                </li>
-                <li class="list-group-item">
-                  <strong>Mermelstein, Maddie:</strong> meeting with Sabrina 
-
-                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Show Details
-                  </button>
-                  <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <strong>Someone, Someone:</strong> absent
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="select-2-continue">
+      <h2>Select a Subject to Continue</h2>
+      
     </div>
   </div>
   

@@ -23,5 +23,5 @@ const dateSchema = new mongoose.Schema({
 // add date schema instead of student
 
 
-const CalDate = mongoose.model('Date', dateSchema);
+const CalDate = mongoose.model('CalDate', dateSchema);
 export default CalDate;

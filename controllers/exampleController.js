@@ -1,11 +1,11 @@
-import Example from '../models/CalDate.js';
+import CalDate from '../models/CalDate.js';
 
 export const getExamples = async (req, res) => {
   try {
-    const examples = await Example.find();
-    res.render('index', { examples });
+    // const examples = await Example.find();
+    res.render('index');
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send('Server Error', err);
   }
 };
 
@@ -23,10 +23,10 @@ export const createExample = async (req, res) => {
 
 export const loadFellow = async (req, res) => {
   try {
-    //const examples = await Example.find();
-    res.render('fellow');
+    const days = await CalDate.find();
+    res.render('fellow', { days });
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send('Server Error', err);
   }
 };
 
