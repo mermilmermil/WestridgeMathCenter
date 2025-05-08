@@ -8,7 +8,9 @@ const dateSchema = new mongoose.Schema({
   timeRotation: {
     type: String,
   },
-  available: [],
+  available: {
+    type: Array
+  },
   absent: [],
   meeting: [{
     fellow: {type: String},

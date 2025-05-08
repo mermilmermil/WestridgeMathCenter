@@ -23,7 +23,15 @@ export const createExample = async (req, res) => {
 
 export const loadFellow = async (req, res) => {
   try {
-    const days = await CalDate.find();
+    // const today = new Date()
+    const today = new Date("2025-5-1")
+    today.setHours(0,0,0,0)
+
+    const min = req.query.min || today
+    const max = req.query.max || new Date("4000")
+
+    const days = await CalDate.find({ date: { $gte: min, $lt: max}});
+    
     res.render('fellow', { days });
   } catch (err) {
     res.status(500).send('Server Error', err);
@@ -41,8 +49,8 @@ export const loadDahl = async (req, res) => {
 
 export const loadStudent = async (req, res) => {
   try {
-    //const examples = await Example.find();
-    res.render('student');
+    const days = await CalDate.find()
+    res.render('student', { days });
   } catch (err) {
     res.status(500).send('Server Error');
   }
@@ -50,12 +58,21 @@ export const loadStudent = async (req, res) => {
 
 export const loadTeacher = async (req, res) => {
   try {
-    //const examples = await Example.find();
-    res.render('teacher');
+    // const today = new Date()
+    const today = new Date("2025-5-1")
+    today.setHours(0,0,0,0)
+
+    const min = req.query.min || today
+    const max = req.query.max || new Date("4000")
+
+    const days = await CalDate.find({ date: { $gte: min, $lt: max}});
+    res.render('teacher', { days });
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send(err);
+    
   }
 }; 
+
 
 
 // create csv reader for rotation days
