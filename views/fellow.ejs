@@ -80,15 +80,10 @@
             aria-controls="collapse<%= i %>"
           >
             <%= day.date.toDateString() %> 
-            <% if (rotation.includes(day.timeRotation)) { %> 
+            <% if (rotation.includes(day.timeRotation.split("-")[0])) { %> 
               Lunch Day: <%= day.timeRotation %>
             <% } %> 
-            <% if (day.timeRotation.split("-")[1] === "am") { %>
-              Morning
-            <% } %> 
-            <% if (day.timeRotation.split("-")[1] === "pm") { %>
-              Afterschool
-            <% } %>
+            <%= day.timeRotation.split("-")[1] %>
             
             
           </button>
