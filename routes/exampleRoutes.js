@@ -1,5 +1,5 @@
 import express from 'express';
-import { assignmentCsvToJson, loadDahl, loadFellow, loadHome, loadStudent, loadTeacher } from '../controllers/exampleController.js';
+import { assignmentCsvToJson, delAbsent, fellowAbsent, loadDahl, loadFellow, loadHome, loadStudent, loadTeacher, teacherAbsent } from '../controllers/exampleController.js';
 
 const router = express.Router();
 router.get('/', loadHome)
@@ -9,7 +9,13 @@ router.get('/Ms-Dahl', loadDahl);
 router.get('/student', loadStudent);
 router.get('/teacher', loadTeacher); //change this to a different name
 
+router.get('/fellow/absent/:idFellow/:idName', fellowAbsent)
+
+router.get('/teacher/absent/:idFellow/:idName', teacherAbsent)
+router.get('/teacher/deleteAbs/:idFellow/:idName', delAbsent)
+
 router.get('/populate', assignmentCsvToJson)
+
 
 
 

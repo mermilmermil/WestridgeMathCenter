@@ -98,7 +98,7 @@
                 <% if (day.available) {day.available.forEach(fellow => {%>
                 <li class="list-group-item">
                   <strong><%= fellow %>:</strong> Free 
-                  <button class="btn btn-danger">Absent</button>
+                  <a href="/fellow/absent/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Absent</button></a>
                 </li>
                 <% })} %>
 

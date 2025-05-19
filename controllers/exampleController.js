@@ -70,6 +70,131 @@ export const loadTeacher = async (req, res) => {
   }
 }; 
 
+export const teacherAbsent = async (req, res) => {
+  try {
+    
+    console.log(req.params)
+    const idFellow = req.params.idFellow
+    const id = idFellow
+    console.log(id)
+
+    const fellow = req.params.idName
+    let day = await CalDate.findById(id)
+    console.log(day)
+
+    const availArray = day.available
+    console.log(availArray)
+    if (availArray.length > 0) {
+      const index = availArray.indexOf(fellow)
+      console.log("h" + index)
+      const updatedAvail = availArray.splice(index, 1)
+      
+      console.log(availArray)
+
+      
+      let absentArray = day.absent
+      absentArray.push(updatedAvail[0])
+
+      console.log( absentArray)
+      const updatedDay = await CalDate.updateOne(
+        {_id: id},
+        {$set: { available: availArray, absent: absentArray}}
+      )
+      
+      // await updatedDay.save()
+      res.redirect('/teacher')
+    }
+    else {
+      res.send("how did you get here?")
+    }
+    
+  } catch (err) {
+    res.status(500).send(err);
+    
+  }
+}; 
+
+export const fellowAbsent = async (req, res) => {
+  try {
+    
+    console.log(req.params)
+    const idFellow = req.params.idFellow
+    const id = idFellow
+    console.log(id)
+
+    const fellow = req.params.idName
+    let day = await CalDate.findById(id)
+    console.log(day)
+
+    const availArray = day.available
+    console.log(availArray)
+    if (availArray.length > 0) {
+      const index = availArray.indexOf(fellow)
+      console.log("h" + index)
+      const updatedAvail = availArray.splice(index, 1)
+      
+      console.log(availArray)
+
+      
+      let absentArray = day.absent
+      absentArray.push(updatedAvail[0])
+
+      console.log( absentArray)
+      const updatedDay = await CalDate.updateOne(
+        {_id: id},
+        {$set: { available: availArray, absent: absentArray}}
+      )
+      
+      // await updatedDay.save()
+      res.redirect('/fellow')
+    }
+    else {
+      res.send("how did you get here?")
+    }
+    
+  } catch (err) {
+    res.status(500).send(err);
+    
+  }
+}; 
+
+export const delAbsent = async (req, res) => {
+  try {
+    
+    console.log(req.params)
+    const idFellow = req.params.idFellow
+    const id = idFellow
+    console.log(id)
+
+    const fellow = req.params.idName
+    let day = await CalDate.findById(id)
+    console.log(day)
+
+    let absentArray = day.absent
+    console.log(absentArray)
+
+    const index = absentArray.indexOf(fellow)
+    console.log("h" + index)
+    const removedAbs = absentArray.splice(index, 1)
+    console.log(removedAbs)
+    
+    const availArray = day.available
+    availArray.push(removedAbs[0])
+
+    console.log( absentArray)
+    const updatedDay = await CalDate.updateOne(
+      {_id: id},
+      {$set: { available: availArray, absent: absentArray}}
+    )
+    
+    // await updatedDay.save()
+    res.redirect('/teacher')
+  } catch (err) {
+    res.status(500).send(err);
+    
+  }
+}; 
+
 const assignmentToDate = async (assignments, req, res) => {
   try {
   const result = []
@@ -91,11 +216,11 @@ const assignmentToDate = async (assignments, req, res) => {
       const currLine = lines[i].split(',')
       const currDate = new Date(currLine[1])
 
-      // result.push({
-      //   // date: currDate
-      //   name: "s"
-      // })
-      result.push("2")
+      result.push({
+        // date: currDate
+        name: "s"
+      })
+      
     }
     return result
   

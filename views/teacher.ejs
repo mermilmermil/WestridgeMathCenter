@@ -103,7 +103,7 @@
                 <% if (day.available) {day.available.forEach(fellow => {%>
                 <li class="list-group-item">
                   <strong><%= fellow %>:</strong> Free 
-                  <button class="btn btn-danger">Absent</button>
+                  <a href="/teacher/absent/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Absent</button></a>
                 </li>
                 <% })} %>
 
@@ -126,7 +126,7 @@
                 <% if (day.absent) {day.absent.forEach(fellow => {%>
                   <li class="list-group-item">
                     <strong><%= fellow %>:</strong> Absent 
-                    <button class="btn btn-danger">Delete</button>
+                    <a href="/teacher/deleteAbs/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Delete</button></a>
                     <!-- <button class="btn btn-danger">Absent</button> -->
                   </li>
                   <% })} %>

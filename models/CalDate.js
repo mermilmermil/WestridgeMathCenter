@@ -11,7 +11,9 @@ const dateSchema = new mongoose.Schema({
   available: {
     type: Array
   },
-  absent: [],
+  absent: {
+    type: Array
+  },
   meeting: [{
     fellow: {type: String},
     student: {type: String},
