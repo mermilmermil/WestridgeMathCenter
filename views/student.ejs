@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Center Student</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+  <!-- pt-serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <!-- style sheet -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="student-style.css">
+</head>
+<body>
+  <!-- setting all the subjects -->
+
+  <% const today = new Date("2025-5-13")
+    today.setHours(0,0,0,0)
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
+    const endWeek = new Date(today)
+    endWeek.setDate(today.getDate() + 7)
+    const rotation = ["1", "2", "3", "4", "5", "6"]
+    function convertToTitleCase(str) {
+      if (!str) {
+          return ""
+      }
+      return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+    }
+    function safeId(str) { 
+      return str.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, ''); }
+
+  %>
+  <form action="/student" id="filter-form">
+    <h2>Select Subject</h2>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+      <% allSubjects.forEach((subject) => { %>
+        <input 
+          type="radio" 
+          name="subject" 
+          value="<%= subject %>" 
+          id="<%= subject %>" 
+          onchange="this.form.submit()"
+          <% if(selected.subj === subject){ %> 
+            checked 
+          <% } %>
+          > 
+        <label for="<%= subject %>"><%= subject %></label><br>
+      <% }) %>
+      
+  
+  
+    </div>
+
+    <h2>Select Fellow</h2>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+      <input 
+        type="radio" 
+        name="fellow" 
+        value="all" 
+        id="all" 
+        onchange="this.form.submit()" 
+        <% if(selected.fellow === "all"){ %> 
+          checked 
+        <% } %>
+        >
+      <label for="all">All Fellows</label><br>
+      <% allFellows.forEach((fellow) => { %>
+        <input 
+          type="radio" 
+          name="fellow" 
+          value="<%= fellow %>" 
+          id="<%= fellow %>" 
+          onchange="this.form.submit()" 
+          <% if(selected.fellow === fellow){ %> 
+            checked 
+          <% } %>
+        > 
+        <label for="<%= fellow %>"><%= fellow %></label><br>
+      <% }) %>
+      
+      
+    </div>
+
+    <h2>Select Time</h2>
+    <label for="start-date">Start</label>
+      <input type="date" name="min" id="start-date" value="<%= selected.min %>" onchange="this.form.submit()">
+
+    <label for="end-date">End</label>
+      <input type="date" name="max" id="end-date" value="<%= selected.max %>" onchange="this.form.submit()">
+
+    <label for="rotation">Meeting Time</label>
+      <select name="timeRotation" id="rotation" onchange="this.form.submit()">
+        <option value="all" <% if(selected.rot === "all"){ %> selected <% } %> >all</option>
+        <% allTimeRotations.forEach((time) => { %>
+          <option value="<%= time %>" <% if(selected.rot === time){ %> selected <% } %> >
+            <%= time %>
+          </option>
+        <% }) %>
+      </select>
+    
+
+    
+  </form>
+
+  
+
+
+  <div id="main-page">
+    <div id="header">
+      <a href="/" id="logo-a">
+        <img src="https://www.westridge.org/uploaded/images/smallLogo.png" alt="westridge logo" id="logo">
+      </a>
+      <h1>Make an Appointment</h1>
+      
+    </div>
+    
+    
+      
+    <% if (!selected.subj) {%>
+    <div id="select-2-continue">
+      <h2>Select a Subject to Continue</h2>
+      
+    </div>
+    <% } else if (days.length > 0) { %>
+      <div class="accordion" id="accordionExample">
+      <% days.forEach((day, i) => { %>
+      <div class="accordion-item show"> 
+
+        <h2 class="accordion-header">
+          <button 
+            class="accordion-button <%= i !== 0 ? 'collapsed' : '' %>" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#collapse<%= i %>" 
+            aria-expanded="<%= i === 0 ? 'true' : 'false' %>" 
+            aria-controls="collapse<%= i %>"
+          >
+            <%= day.date.toDateString() %> 
+            <% if (rotation.includes(day.timeRotation.split("-")[0])) { %> 
+              Lunch Day <%= day.timeRotation.split("-")[0] %>
+            <% } 
+            else {%> 
+            
+            <%= convertToTitleCase(day.timeRotation.split("-")[1]) %>
+            
+            <% } %>
+          </button>
+        </h2>
+
+        <div id="collapse<%= i %>" class="accordion-collapse collapse <%= i === 0 ? 'show' : '' %>" aria-labelledby="heading<%= i %>" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+
+            <div class="card" >
+              <ul class="list-group list-group-flush">
+                 <% day.available.forEach((fellow, i, date=day.date) => { %>
+                  <li class="list-group-item">
+                    
+                    <strong><%=fellow %></strong>  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= safeId(fellow) %>">
+                      Schedule Meeting
+                    </button>
+                  </li>
+                  <div class="modal fade" id="exampleModal<%= safeId(fellow) %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= fellow %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel<%= fellow %>">Schedule a Meeting with <%= fellow %></h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <% console.log(fellow) %>
+                          <form action="/scheduleMeeting" onsubmit="return confirm('confirm meeting with <%= fellow %> at <%= day.date.toDateString() %> for <%= selected.subj %>')">
+                            
+                            <label for="student">Your name</label>
+                            <br>
+                            <input type="text" id="student" name="student" required>
+                            <br>
+                            <label for="email">Your Westridge email</label>
+                            <br>
+                            <input type="text" id="email" name="studentEmail" required>
+                            <br>
+                            <label for="details">Any extra notes</label>
+                            <br>
+                            <textarea name="details" id="details" name="details" required></textarea>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+                
+              </ul>
+              
+            </div>
+
+          </div>
+        </div>
+      </div> 
+      <% }) %>
+      
+    
+      
+    
+    </div>
+      
+    <%} else { %>
+        <div id="no-matches">
+      <h2>There are no days that match this criteria</h2>
+      
+    </div>
+
+      <% } %>
+
+    
+  
+  
+  
+  
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+</html>

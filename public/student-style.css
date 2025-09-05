@@ -1,0 +1,106 @@
+html, #main-page {
+  background-color: white;
+}
+
+.scrollspy-example {
+  position: relative;
+  height: 10rem;
+  overflow-y: auto;
+}
+
+
+#main-page {
+  margin-left: 20%;
+  padding-left: 0%;
+}
+
+h1 {
+  color: #8EBA66;
+}
+
+#logo {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-top: 15%;
+}
+
+#header {
+  display: flex;
+  background-color: #47763B;
+}
+
+#select-2-continue {
+  position: fixed;
+  left: 42%;
+  top: 45%;
+}
+
+#no-matches {
+  position: fixed;
+  left: 32.5%;
+  top: 45%;
+}
+/* Remove margin from Scrollspy */
+.scrollspy-example {
+  position: relative;
+  height: 10rem;
+  overflow-y: auto;
+}
+
+#filter-form {
+  display: flex;
+  background-color:#8EBA66;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: fixed;
+  display: flex;
+  width: 20%;
+  height: 100%;
+  padding-right: .5%;
+}
+
+
+/* General style for labels with radio buttons */
+#filter-form input[type="radio"] {
+  display: none; /* hide native radio */
+}
+
+#filter-form label {
+  display: block;
+  /* padding: 0.4rem 0.8rem;
+  margin-bottom: 0.4rem; */
+  
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  background-color: #ffffff;
+  color: #1B3D6D;
+  font-weight: 500;
+}
+
+/* Selected style */
+#filter-form input[type="radio"]:checked + label {
+  background-color: #8EBA66; /* primary */
+  border-color: #47763B;     /* secondary */
+  color: white;
+}
+
+
+/* Input and select styling */
+#filter-form .form-control
+ {
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s;
+}
+
+
+/* REMOVE all margin/padding from elements inside scrollspy */
+.scrollspy-example input,
+.scrollspy-example label {
+  margin: -3% !important;
+  padding: -3% !important;
+}
+
+

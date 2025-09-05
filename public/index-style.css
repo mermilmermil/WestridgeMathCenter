@@ -1,0 +1,87 @@
+/* Global Reset and Base Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  
+  /* background-color: #BBC6C3; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Container styling */
+div {
+  background-color: #8EBA66; /* Primary color background */
+  padding: 50px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  /* max-width: 500px; */
+}
+
+/* Heading styling */
+h1 {
+  font-size: 2.5rem;
+  color:white; /* Dark secondary blue */
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color:white; /* Dark green secondary */
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+/* Button styles */
+button.btn-primary {
+  background-color: #47763B; /* Deep green secondary */
+  border-color: #47763B;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 24px;
+  margin: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 8px;
+}
+
+/* Button hover effect */
+button.btn-primary:hover {
+  background-color: #1B3D6D; /* lighter blue secondary on hover */
+  border-color: #57A0D0;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Link (a) styling to remove underline */
+a {
+  text-decoration: none;
+}
+
+/* Additional: Nice focus ring for accessibility */
+button.btn-primary:focus {
+  outline: 3px solid yellow ; /* Yellow secondary accent */
+  outline-offset: 3px;
+}
+
+/* Responsive Tweak for small screens */
+@media (max-width: 600px) {
+  div {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  button.btn-primary {
+    width: 100%;
+    margin: 8px 0;
+  }
+}

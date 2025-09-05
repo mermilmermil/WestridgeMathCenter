@@ -1,0 +1,153 @@
+
+/* pt-serif */
+* {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Accordion + card spacing */
+.accordion-item {
+  margin: 1rem 1rem 2rem 1rem; /* Top + bottom and side spacing */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Accordion */
+.accordion-button {
+  background-color: #74aa50; /* Using PMS 7489C */
+  color: white;
+  font-weight: bold;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #47763B; /* Updated from #57A0D0 */
+  color: white;
+}
+
+.accordion-body {
+  background-color: #f9f9f9;
+  padding: 1rem;
+}
+
+/* Card styles */
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #BBC6C3;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.card .list-group-item {
+  border: none;
+  padding: 1rem;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+}
+.card .list-group-item:nth-child(odd) {
+  background-color: #F6FDF4;
+}
+
+/* Card buttons */
+.card .btn-danger {
+  background-color: #F26F6A;
+  border-color: #F26F6A;
+}
+.card .btn-danger:hover {
+  background-color: #c94f4c;
+  border-color: #c94f4c;
+}
+.card .btn-primary {
+  background-color: #FFC907;
+  border-color: #FFC907;
+  color: #1B3D6D;
+}
+.card .btn-primary:hover {
+  background-color: #e6b500;
+  border-color: #e6b500;
+  color: #0f2a4d;
+}
+
+/* Collapse panel inside card */
+.card-body {
+  background-color: #E9F5E1;
+  border-radius: 10px;
+}
+
+/* Text styling */
+strong {
+  color: #1B3D6D;
+}
+
+
+/* Navbar */
+nav {
+  background-color: #8EBA66;
+  padding: 1rem;
+  /* border-bottom: 3px solid #47763B; */
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav button {
+  background-color: #57A0D0;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+nav button:hover {
+  background-color: #1B3D6D;
+}
+/* Buttons in nav */
+nav button, nav .form-group {
+  background-color: #47763B; /* Updated from #57A0D0 */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+nav button:hover {
+  background-color: #1B3D6D;
+}
+
+/* Make nav form horizontal with clean spacing */
+nav form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+}
+
+form .form-group {
+  margin-right: 1.5rem;
+}
+
+nav form input,
+nav form select {
+  /* margin-right: 1.5rem; */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #BBC6C3;
+  border-radius: 5px;
+}
+
+/* Optional: group each label/input combo for better alignment */
+nav form label,
+nav form input,
+nav form select {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#logo {
+  height: 40px;
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+}
