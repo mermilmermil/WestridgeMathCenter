@@ -17,22 +17,51 @@ export const loadHome = async (req, res) => {
 
 export const loadFellow = async (req, res) => {
   try {
-    // const today = new Date()
     const today = new Date("2025-5-1")
     today.setHours(0,0,0,0)
 
+    const constants = await Constants.findOne(); 
+
+    const allFellows = constants.fellows
+    const allSubjects = constants.subjects
+    const allTimeRotations = constants.timeRotations
+
     const min = req.query.min || today
-    const max = req.query.max || new Date("4000")
-    const rot = req.query.rotation 
+    const max = req.query.max || null;
+
+    // 🔥 fix mismatch: either change here OR change the select name
+    const rot = req.query.timeRotation || "all"
+    const query = {
+      date: { $gte: min }
+    };
+    if (max) {
+      query.date.$lt = max;
+    }
+
+    // Handle rotation logic
+    let days;
+    if (rotationDays.includes(rot)) {
+      days = await CalDate.find({
+        ...query,
+        timeRotation: `${rot}-lunch`
+      });
+    } else if (rot !== "all") {
+      days = await CalDate.find({
+        ...query,
+        timeRotation: rot
+      });
+    } else {
+      days = await CalDate.find(query);
+    }
     
-    const days = rotationDays.includes(rot) ? await CalDate.find({ date: { $gte: min, $lt: max}, timeRotation: `${rot}-lunch`}) : await CalDate.find({ date: { $gte: min, $lt: max}});
-    
-    res.render('fellow', { days });
+
+    res.render("fellow", { days, allTimeRotations, selected: { rot, min, max } })
   } catch (err) {
     console.log(err)
-    res.status(500).send( err);
+    res.status(500).send(err)
   }
-};
+}
+
 
 export const loadDahl = async (req, res) => {
   try {
@@ -92,16 +121,44 @@ export const loadTeacher = async (req, res) => {
   try {
     // const today = new Date()
     // maybe cutoff 8:40
-    const today = new Date("2025-5-13")
+    const today = new Date("2025-5-1")
     today.setHours(0,0,0,0)
 
+    const constants = await Constants.findOne(); 
+
+    const allFellows = constants.fellows
+    const allSubjects = constants.subjects
+    const allTimeRotations = constants.timeRotations
+
     const min = req.query.min || today
-    const max = req.query.max || new Date("4000")
-    const rot = req.query.rotation 
-    
-    const days = rotationDays.includes(rot) ? await CalDate.find({ date: { $gte: min, $lt: max}, timeRotation: rot}) : await CalDate.find({ date: { $gte: min, $lt: max}});
-    
-    res.render('teacher', { days });
+    const max = req.query.max || null;
+
+    // 🔥 fix mismatch: either change here OR change the select name
+    const rot = req.query.timeRotation || "all"
+    const query = {
+      date: { $gte: min }
+    };
+    if (max) {
+      query.date.$lt = max;
+    }
+
+    // Handle rotation logic
+    let days;
+    if (rotationDays.includes(rot)) {
+      days = await CalDate.find({
+        ...query,
+        timeRotation: `${rot}-lunch`
+      });
+    } else if (rot !== "all") {
+      days = await CalDate.find({
+        ...query,
+        timeRotation: rot
+      });
+    } else {
+      days = await CalDate.find(query);
+    }
+
+    res.render('teacher', { days, allTimeRotations, selected: { rot, min, max } });
   } catch (err) {
     res.status(500).send(err);
     
@@ -245,6 +302,7 @@ export const scheduleMeeting = async (req, res) => {
 
     const availArray = day.available
     console.log(availArray)
+    const details = {subject: req.body.subject, additional: req.body.details}
     if (availArray.length > 0) {
       const index = availArray.indexOf(fellow)
       console.log("h" + index)
@@ -254,7 +312,7 @@ export const scheduleMeeting = async (req, res) => {
 
       
       let meetingArray = day.meeting
-      meetingArray.push({fellow: updatedAvail[0], student: req.body.student, studentEmail: req.body.studentEmail, details: req.body.details})
+      meetingArray.push({fellow: updatedAvail[0], student: req.body.student, studentEmail: req.body.studentEmail, details })
       
       console.log(meetingArray)
       const updatedDay = await CalDate.updateOne(
@@ -276,6 +334,43 @@ export const scheduleMeeting = async (req, res) => {
     res.status(500).send('Server Error\n' + err);
   }
 };
+
+export const removeMeeting = async (req, res) => {
+  try {
+    
+    console.log(req.body)
+    const id = req.body.id
+    console.log(id)
+    const fellow = req.body.fellow
+    const meet = req.body.meet
+    let day = await CalDate.findById(id)
+    console.log(day)
+
+    let meetingArray = day.meeting
+    console.log(meetingArray)
+
+    const index = meetingArray.indexOf(meet)
+    console.log("h" + index)
+    const removedAbs = meetingArray.splice(index, 1)
+    console.log(removedAbs)
+    
+    const availArray = day.available
+    availArray.push(fellow)
+
+    console.log( meetingArray)
+    const updatedDay = await CalDate.updateOne(
+      {_id: id},
+      {$set: { available: availArray, meeting: meetingArray}}
+    )
+    
+    // await updatedDay.save()
+    res.redirect('/teacher')
+    // res.send(meetingArray)
+  } catch (err) {
+    res.status(500).send(err);
+    
+  }
+}; 
 
 
 const assignmentToDate = async (req, res, assignments) => {

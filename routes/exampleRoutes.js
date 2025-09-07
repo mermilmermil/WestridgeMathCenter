@@ -1,5 +1,5 @@
 import express from 'express';
-import { assignmentCsvToJson, delAbsent, fellowAbsent, loadDahl, loadFellow, loadHome, loadStudent, loadTeacher, teacherAbsent, scheduleMeeting } from '../controllers/exampleController.js';
+import { assignmentCsvToJson, delAbsent, fellowAbsent, loadDahl, loadFellow, loadHome, loadStudent, loadTeacher, teacherAbsent, scheduleMeeting, removeMeeting } from '../controllers/exampleController.js';
 
 const router = express.Router();
 router.get('/', loadHome)
@@ -15,6 +15,7 @@ router.get('/teacher/absent/:idFellow/:idName', teacherAbsent)
 router.get('/teacher/deleteAbs/:idFellow/:idName', delAbsent)
 
 router.post('/scheduleMeeting', scheduleMeeting)
+router.post('/removeMeeting', removeMeeting)
 
 router.get('/populate', assignmentCsvToJson)
 

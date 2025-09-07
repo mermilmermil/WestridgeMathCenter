@@ -18,7 +18,10 @@ const dateSchema = new mongoose.Schema({
     fellow: {type: String},
     student: {type: String},
     studentEmail: {type: String},
-    details: {type: String}
+    details: {
+      subject: {type: String},
+      additional: {type: String}
+    }
   }],
   subjects: {
     type: Array

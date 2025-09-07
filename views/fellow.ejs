@@ -31,6 +31,12 @@
     tomorrow.setDate(today.getDate() + 1)
     const endWeek = new Date(today)
     endWeek.setDate(today.getDate() + 7)
+    function convertToTitleCase(str) {
+      if (!str) {
+          return ""
+      }
+      return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+    }
   %>
 
   <a href="fellow?min=<%= today %>&max=<%= tomorrow %>"><button>Today</button></a>
@@ -39,25 +45,39 @@
   <form action="fellow" method="GET" class="d-flex flex-wrap align-items-center gap-3">
     <div class="form-group d-flex align-items-center">
       <label for="start-date" class="me-2">Start</label>
-      <input id="start-date" name="min" type="date">
+      <input 
+        id="start-date" 
+        name="min" 
+        type="date" 
+        value="<%= selected.min ? new Date(selected.min).toISOString().split('T')[0] : '' %>"
+        onchange="this.form.submit()"
+      >
     </div>
+
     <div class="form-group d-flex align-items-center">
       <label for="end-date" class="me-2">End</label>
-      <input type="date" id="end-date" name="max">
+      <input 
+        type="date" 
+        id="end-date" 
+        name="max" 
+        value="<%= selected.max ? new Date(selected.max).toISOString().split('T')[0] : '' %>"
+        onchange="this.form.submit()"
+      >
     </div>
+
+
     <div class="form-group d-flex align-items-center">
-      <label for="rotation" class="me-2">Rotation</label>
-      <select name="rotation" id="rotation">
-        <option value="all">all</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+      <label for="rotation" class="me-2">Meet Time</label>
+      <select name="timeRotation" id="rotation" onchange="this.form.submit()">
+        <option value="all" <%= selected.rot === "all" ? "selected" : "" %>>all</option>
+        <% allTimeRotations.forEach((time) => { %>
+          <option value="<%= time %>" <%= selected.rot === time ? "selected" : "" %>>
+            <%= time %>
+          </option>
+        <% }) %>
       </select>
+
     </div>
-    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
     
   </nav>
@@ -81,10 +101,13 @@
           >
             <%= day.date.toDateString() %> 
             <% if (rotation.includes(day.timeRotation.split("-")[0])) { %> 
-              Lunch Day: <%= day.timeRotation %>
-            <% } %> 
-            <%= day.timeRotation.split("-")[1] %>
+              Lunch Day <%= day.timeRotation.split("-")[0] %>
+            <% } 
+            else {%> 
             
+            <%= convertToTitleCase(day.timeRotation.split("-")[1]) %>
+            
+            <% } %>
             
           </button>
         </h2>
@@ -98,7 +121,7 @@
                 <% if (day.available) {day.available.forEach(fellow => {%>
                 <li class="list-group-item">
                   <strong><%= fellow %>:</strong> Free 
-                  <a href="/fellow/absent/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Absent</button></a>
+                  <form style="margin: 0; padding: 0; display: inline;" action="/fellow/absent/<%= day._id %>/<%= fellow %>" onsubmit="return confirm('Are you sure you want to mark <%= fellow %> absent on <%= day.date.toDateString() %>')"><button class="btn btn-danger">Absent</button></form><a href="/fellow/absent/<%= day._id %>/<%= fellow %>"></a>
                 </li>
                 <% })} %>
 
@@ -111,7 +134,9 @@
                   </button>
                   <div class="collapse" id="details<%= i %>">
                     <div class="card card-body">
-                      <%= meet.details %>
+                      
+                      Subject: <%= meet.details.subject %> <br>
+                      Additional Details: <%= meet.details.additional %>
                     </div>
                   </div>
                 </li>
