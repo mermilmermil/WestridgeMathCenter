@@ -112,6 +112,7 @@
 
 
   <div id="main-page">
+    
     <div id="header">
       <a href="/" id="logo-a">
         <img src="https://www.westridge.org/uploaded/images/smallLogo.png" alt="westridge logo" id="logo">
@@ -120,7 +121,12 @@
       
     </div>
     
-    
+    <% if (success) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Meeting scheduled successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
       
     <% if (!selected.subj) {%>
     <div id="select-2-continue">
@@ -129,7 +135,9 @@
     </div>
     <% } else if (days.length > 0) { %>
       <div class="accordion" id="accordionExample">
-      <% days.forEach((day, i) => { %>
+      <% days.forEach((day, i) => { 
+        if (day.available.length > 0){%>
+
       <div class="accordion-item show"> 
 
         <h2 class="accordion-header">
@@ -206,7 +214,7 @@
 
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Schedule Meeting</button>
                           </div>
                         </form>
                       </div>
@@ -222,7 +230,7 @@
           </div>
         </div>
       </div> 
-      <% }) %>
+      <% }}) %>
       
     
       
@@ -243,6 +251,15 @@
   
   
   </div>
+  <script>
+    const alertEl = document.querySelector('.alert');
+    if (alertEl) {
+      setTimeout(() => {
+        const bsAlert = new bootstrap.Alert(alertEl);
+        bsAlert.close();
+      }, 4000); // 4s
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

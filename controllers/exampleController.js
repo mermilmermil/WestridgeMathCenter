@@ -56,6 +56,8 @@ export const loadStudent = async (req, res) => {
     const rot = req.query.timeRotation || "all"
     const subj = req.query.subject
     const fellow = req.query.fellow || "all"
+
+    const success = req.query.success === "true"
     
 
     const constants = await Constants.findOne(); // just one doc
@@ -80,7 +82,7 @@ export const loadStudent = async (req, res) => {
     // Fetch filtered appointments
     const days = await CalDate.find(query).sort({ date: 1})
     // console.log(days)
-    res.render('student', { days, allFellows, allSubjects, allTimeRotations, selected: { min, max, rot, subj, fellow }});
+    res.render('student', { days, allFellows, allSubjects, allTimeRotations, selected: { min, max, rot, subj, fellow }, success});
   } catch (err) {
     res.status(500).send('Server Error ' + err);
   }
@@ -261,8 +263,8 @@ export const scheduleMeeting = async (req, res) => {
       )
       
       // await updatedDay.save()
-      // res.redirect('/student')
-      res.send(updatedDay)
+      res.redirect('/student?success=true')
+      // res.send(updatedDay)
       // res.send(meetingArray)
     }
     else {
