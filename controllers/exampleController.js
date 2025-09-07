@@ -233,12 +233,11 @@ export const delAbsent = async (req, res) => {
 
 export const scheduleMeeting = async (req, res) => {
   try {
-    console.log(req.params)
-    const idFellow = req.params.idFellow
-    const id = idFellow
+    console.log(req.body)
+    const id = req.body.id
     console.log(id)
 
-    const fellow = req.params.idName
+    const fellow = req.body.fellow
     let day = await CalDate.findById(id)
     console.log(day)
 
@@ -253,7 +252,7 @@ export const scheduleMeeting = async (req, res) => {
 
       
       let meetingArray = day.meeting
-      meetingArray.push({fellow: updatedAvail[0], student: req.params.student, details: req.params.details})
+      meetingArray.push({fellow: updatedAvail[0], student: req.body.student, studentEmail: req.body.studentEmail, details: req.body.details})
       
       console.log(meetingArray)
       const updatedDay = await CalDate.updateOne(
@@ -264,15 +263,15 @@ export const scheduleMeeting = async (req, res) => {
       // await updatedDay.save()
       // res.redirect('/student')
       res.send(updatedDay)
+      // res.send(meetingArray)
     }
     else {
       res.send("how did you get here?")
     }
     
-    res.send("done")
     // res.redirect('student')
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send('Server Error\n' + err);
   }
 };
 

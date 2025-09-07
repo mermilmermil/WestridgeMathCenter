@@ -158,45 +158,61 @@
 
             <div class="card" >
               <ul class="list-group list-group-flush">
-                 <% day.available.forEach((fellow, i, date=day.date) => { %>
+                 <% day.available.forEach((fellow, i) => { %>
                   <li class="list-group-item">
-                    
-                    <strong><%=fellow %></strong>  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= safeId(fellow) %>">
+                    <strong><%= fellow %></strong>  
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
                       Schedule Meeting
                     </button>
                   </li>
-                  <div class="modal fade" id="exampleModal<%= safeId(fellow) %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= fellow %>" aria-hidden="true">
+
+                  <div class="modal fade" 
+                      id="exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
+                      tabindex="-1" 
+                      aria-labelledby="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
+                      aria-hidden="true">
+
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel<%= fellow %>">Schedule a Meeting with <%= fellow %></h1>
+                          <h1 class="modal-title fs-5" 
+                              id="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
+                            Schedule a Meeting with <%= fellow %>
+                          </h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                          <% console.log(fellow) %>
-                          <form action="/scheduleMeeting" onsubmit="return confirm('confirm meeting with <%= fellow %> at <%= day.date.toDateString() %> for <%= selected.subj %>')">
+
+                        <form action="/scheduleMeeting" method="POST"
+                              onsubmit="return confirm('Confirm meeting with <%= fellow %> at <%= day.date.toDateString() %> for <%= selected.subj %>')">
+                          <div class="modal-body">
                             
-                            <label for="student">Your name</label>
-                            <br>
-                            <input type="text" id="student" name="student" required>
-                            <br>
-                            <label for="email">Your Westridge email</label>
-                            <br>
-                            <input type="text" id="email" name="studentEmail" required>
-                            <br>
-                            <label for="details">Any extra notes</label>
-                            <br>
-                            <textarea name="details" id="details" name="details" required></textarea>
-                          
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Save changes</button>
+                            <input type="hidden" name="fellow" value="<%= fellow %>">
+                            <input type="hidden" name="subject" value="<%= selected.subj %>">
+                            <input type="hidden" name="id" value="<%= day._id %>">
+                            <input type="hidden" name="date" value="<%= day.date.toISOString() %>">
+                            
+                            <label for="student_<%= i %>_<%= day.date.getTime() %>">Your name</label><br>
+                            <input type="text" id="student_<%= i %>_<%= day.date.getTime() %>" name="student" required><br>
+
+                            <label for="email_<%= i %>_<%= day.date.getTime() %>">Your Westridge email</label><br>
+                            <input type="email" id="email_<%= i %>_<%= day.date.getTime() %>" name="studentEmail" required><br>
+
+                            <label for="details_<%= i %>_<%= day.date.getTime() %>">Any extra notes</label><br>
+                            <textarea id="details_<%= i %>_<%= day.date.getTime() %>" name="details"></textarea>
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
                         </form>
-                        </div>
                       </div>
                     </div>
                   </div>
+
                 <% }) %>
                 
               </ul>

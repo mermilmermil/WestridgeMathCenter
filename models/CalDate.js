@@ -17,6 +17,7 @@ const dateSchema = new mongoose.Schema({
   meeting: [{
     fellow: {type: String},
     student: {type: String},
+    studentEmail: {type: String},
     details: {type: String}
   }],
   subjects: {
