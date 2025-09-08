@@ -40,6 +40,7 @@
       }
       return str.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
     }
+    const rotation = ["1", "2", "3", "4", "5", "6"]
   %>
 
   <a href="fellow?min=<%= today %>&max=<%= tomorrow %>"><button>Today</button></a>
@@ -85,7 +86,7 @@
     
   </nav>
 
-  <% const rotation = ["1", "2", "3", "4", "5", "6"] %>
+  
   <div class="accordion" id="accordionExample">
     <% days.forEach((day, i) => { %>
       <div class="accordion-item">
@@ -99,15 +100,16 @@
             aria-controls="collapse<%= i %>"
           >
             <%= day.date.toDateString() %> 
-            <% if (rotation.includes(day.timeRotation)) { %> 
-              Lunch Day: <%= day.timeRotation %>
-            <% } %> 
-            <% if (day.timeRotation.split("-")[1] === "am") { %>
-              Morning
-            <% } %> 
-            <% if (day.timeRotation.split("-")[1] === "pm") { %>
-              Afterschool
+            <% if (rotation.includes(day.timeRotation.split("-")[0])) { %> 
+              Lunch Day <%= day.timeRotation.split("-")[0] %>
+            <% } 
+            else {%> 
+            
+            <%= convertToTitleCase(day.timeRotation.split("-")[1]) %>
+            
             <% } %>
+            
+            
             
             
           </button>
@@ -155,7 +157,7 @@
                   <li class="list-group-item">
                     <strong><%= fellow %>:</strong> Absent 
                     <a href="/teacher/deleteAbs/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Remove Absense</button></a>
-                    <!-- <button class="btn btn-danger">Absent</button> -->
+                   
                   </li>
                   <% })} %>
                 
