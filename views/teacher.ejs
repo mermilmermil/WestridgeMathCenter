@@ -137,7 +137,7 @@
                     Show Details
                   </button>
                   <form method="POST" action="/removeMeeting" style="margin: 0; padding: 0; display: inline;" onsubmit="return confirm('Are you sure you want to remove the meeting between <%= meet.fellow %> and <%= meet.student %>')">
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger">Remove Meeting</button>
                     <input type="hidden" name="id" value="<%= day._id %>">
                     <input type="hidden" name="meetArray" value="<%= meet %>">
                     <input type="hidden" name="fellow" value="<%= meet.fellow %>">
@@ -154,7 +154,7 @@
                 <% if (day.absent) {day.absent.forEach(fellow => {%>
                   <li class="list-group-item">
                     <strong><%= fellow %>:</strong> Absent 
-                    <a href="/teacher/deleteAbs/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Delete</button></a>
+                    <a href="/teacher/deleteAbs/<%= day._id %>/<%= fellow %>"><button class="btn btn-danger">Remove Absense</button></a>
                     <!-- <button class="btn btn-danger">Absent</button> -->
                   </li>
                   <% })} %>
