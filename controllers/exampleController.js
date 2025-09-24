@@ -476,14 +476,14 @@ export const assignmentCsvToJson = async (req, res) => {
       // { timeRotation, fellows, Date(), Subjects, Faculty  }
         
         const currLine = lines[i].split(',')
-        let fellows = currLine[1].split(';')
+        let fellows = currLine[1]
         
-        fellows = fellows.map(e => {
+        
           
-          const firstName = e.split(' ')[0]
-          const lastName = e.split(' ')[1]
-          return  `${lastName}, ${firstName}`
-        })
+        const firstName = fellows.split(' ')[0]
+        const lastName = fellows.split(' ')[1]
+        fellows = `${lastName}, ${firstName}`
+        
         console.log(fellows)
         
         let currSubjects = currLine[4].split(';')
@@ -524,10 +524,10 @@ export const assignmentCsvToJson = async (req, res) => {
 
       const fakeAllFellows = []
       result.forEach((day) => {
+      // this is the singular fellow defined at the top
       let currSubjs = day.fellows
-      currSubjs.forEach((e) => {
-        fakeAllFellows.push(e)
-      })
+      fakeAllFellows.push(currSubjs)
+      
 
       })
       const ALLFELLOWS = [...new Set(fakeAllFellows)]
@@ -554,9 +554,9 @@ export const assignmentCsvToJson = async (req, res) => {
 
       console.log("Saved constants to Mongo");
 
-      // const answer = await assignmentToDate(req, res, result)
+      const answer = await assignmentToDate(req, res, result)
       
-      res.send(result)
+      // res.send(result)
     });
 
   } catch (err) {
