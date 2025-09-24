@@ -459,7 +459,7 @@ export const assignmentCsvToJson = async (req, res) => {
   try {
     const why = await CalDate.deleteMany({})
 
-      // Shift,Fellows,Faculty,Subjects
+      // Shift,Fellows,Email,Faculty,Subjects
       // Day, Date
     const result = [] 
     const filePath = path.join("./data", 'center-assignments.csv'); 
@@ -476,7 +476,7 @@ export const assignmentCsvToJson = async (req, res) => {
       // { timeRotation, fellows, Date(), Subjects, Faculty  }
         
         const currLine = lines[i].split(',')
-        let fellows = currLine[1].split('"')[1].split(';')
+        let fellows = currLine[1].split(';')
         
         fellows = fellows.map(e => {
           
@@ -484,21 +484,21 @@ export const assignmentCsvToJson = async (req, res) => {
           const lastName = e.split(' ')[1]
           return  `${lastName}, ${firstName}`
         })
-
+        console.log(fellows)
         
-        let currSubjects = currLine[3].split(';')
+        let currSubjects = currLine[4].split(';')
         if (currSubjects.length > 1) {
-          currSubjects = currLine[3].split('"')[1].split(';')
+          currSubjects = currLine[4].replace('\r', "").replace('\n', "").split(';')
         }
         else {
-          currSubjects = currLine[3].split('"')[1]
+          currSubjects = currLine[4].replace('\r', "").replace('\n', "")
           currSubjects = [currSubjects]
         }
         const currObj = {
           timeRotation: currLine[0],
-          fellows: fellows,
+          fellows,
           subjects: currSubjects,
-          faculty: currLine[2],
+          faculty: currLine[3],
 
 
         }
@@ -554,9 +554,9 @@ export const assignmentCsvToJson = async (req, res) => {
 
       console.log("Saved constants to Mongo");
 
-      const answer = await assignmentToDate(req, res, result)
-      console.log(answer)
-      // return res.send(answer)
+      // const answer = await assignmentToDate(req, res, result)
+      
+      res.send(result)
     });
 
   } catch (err) {

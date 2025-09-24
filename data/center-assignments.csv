@@ -1,10 +1,27 @@
-Shift,Fellows,Supervising Faculty,Subjects
-Tuesday-morning,"Ella Syer;Sophia Das",Dr. Busch,"Economics;Advanced Statistics;AP Calculus AB;AP Calculus BC;Calculus I;Statistics;Honors Pre-Calculus;Pre-Calculus;Honors Algebra II;Algebra II;Advanced Geometry;Geometry;Lower School"
-Wednesday-morning,"Willow Nauber;Presley Pan",Dr. Busch,"Economics;Advanced Statistics;AP Calculus AB;AP Calculus BC;Calculus I;Statistics;Honors Pre-Calculus;Pre-Calculus;Honors Algebra II;Algebra II;Advanced Geometry;Geometry;Lower School"
-1-lunch,"Sofia Kartite;Gia Song;Makayla Wang",Ms. Dahl,"Economics;Advanced Statistics;AP Calculus AB;AP Calculus BC;Calculus I;Statistics;Honors Pre-Calculus;Pre-Calculus"
-2-lunch,"Kanon Iwata;Anya Klaeb;Annika Lin",Mr. Zhou,"Honors Algebra II;Algebra II;Advanced Geometry;Geometry"
-3-lunch,"Saba Kolahdouzan;Maddie Mermelstein",Ms. Dahl,"Economics;Advanced Statistics;AP Calculus AB;AP Calculus BC;Calculus I;Statistics;Honors Pre-Calculus;Pre-Calculus"
-4-lunch,"Manon Iwata;Caroline Macomber;Lily Chen",Mr. Zhou,"Honors Algebra II;Algebra II;Advanced Geometry;Geometry"
-5-lunch,"Kaitlyn Hong;Keira Krishnaiah",Ms. Dahl,"Economics;Advanced Statistics;AP Calculus AB;AP Calculus BC;Calculus I;Statistics;Honors Pre-Calculus;Pre-Calculus"
-6-lunch,"Lauren Whang;Ashley Du;Layla Rashid",Mr. Zhou,"Honors Algebra II;Algebra II;Advanced Geometry;Geometry"
-Thursday-afternoon,"Lilian Li;Mena Joung",Mx. Brownsmith,"Lower School"
+Shift,Fellows,Email,Supervising Faculty,Subjects
+Tuesday-morning,Sophia Das,SD27268@westridge.org,jbusch@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+Tuesday-morning,Maddie Mermelstein,MM26189@westridge.org,jbusch@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+Wednesday-morning,Presley Pan,PP27667@westridge.org,jbusch@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+Wednesday-morning,Karalim Cruikshank,KC28897@westridge.org,jbusch@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+1-lunch,Manon Iwata,MI26947@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+1-lunch,Emily Lin,ZL26677@westridge.org,ldahl@westridge.org,Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced;Economics
+1-lunch,Mhairi Cameron,MC27593@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+1-lunch,Lyla Stuart-Alban,LS28907@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II
+2-lunch,Mena Joung,MJ26731@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced;Economics
+2-lunch,Avin Mohammadkhanli,AM27928@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+2-lunch,Sarineh Gregorian,SG28755@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II
+3-lunch,Keira Krishnaiah,KK26711@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced;Economics
+3-lunch,Arden Richardson,AR25479@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+3-lunch,Lillian Wang,LW27262@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+3-lunch,Amelia Hu,ZH28239@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II
+4-lunch,Annika Lin,AL27497@westridge.org,azhou@westridge.org,Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+4-lunch,Kelly Chen,KC27159@westridge.org,azhou@westridge.org,Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+4-lunch,Hermione Wang,HW27177@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+4-lunch,Sara Kolahdouzan,SK28419@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II
+5-lunch,Kanon Iwata,KI26946@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+5-lunch,Olivia Tan,OT26188@westridge.org,ldahl@westridge.org,Algebra II;Honors Algebra II;Calculus I Advanced;Calculus I/II Advanced
+5-lunch,Yolanda Wang,YW27263@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+5-lunch,Claire Hui,CH28416@westridge.org,ldahl@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II
+6-lunch,Caroline Macomber,CM26452@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus;Calculus I Advanced;Calculus I/II Advanced
+6-lunch,Layla Rashid,LR27725@westridge.org,azhou@westridge.org,Algebra II;Honors Algebra II;Pre-Calculus;Honors Pre-Calculus
+6-lunch,Kylie Hsu,KH28415@westridge.org,azhou@westridge.org,Geometry;Honors Geometry;Algebra II;Honors Algebra II

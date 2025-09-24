@@ -145,9 +145,12 @@
                 <% if (day.absent) {day.absent.forEach(fellow => {%>
                   <li class="list-group-item">
                     <strong><%= fellow %>:</strong> Absent 
-                    <!-- <button class="btn btn-danger">Absent</button> -->
+                    
                   </li>
                   <% })} %>
+                <li class="list-group-item">
+                <button class="btn btn-primary">+</button> Add Review Session
+                  </li>
                 
               </ul>
             </div>
