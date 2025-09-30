@@ -2,6 +2,7 @@ import CalDate from '../models/CalDate.js';
 import fs from 'fs'
 import path from 'path'
 import Constants from '../models/Constants.js';
+import Fellows from '../models/Fellows.js';
 
 const rotationDays = ["1","2","3","4","5","6"]
 
@@ -87,9 +88,12 @@ export const loadStudent = async (req, res) => {
     const fellow = req.query.fellow || "all"
 
     const success = req.query.success === "true"
-    
-
-    const constants = await Constants.findOne(); // just one doc
+    if (subj) {
+      await Fellows.find({subjects: subj})
+      
+    }
+    console.log(subj)
+    const constants = await Constants.findOne(); // just one doc (hopefully)
 
     const allFellows = constants.fellows
     const allSubjects = constants.subjects
@@ -110,7 +114,8 @@ export const loadStudent = async (req, res) => {
 
     // Fetch filtered appointments
     const days = await CalDate.find(query).sort({ date: 1})
-    // console.log(days)
+    console.log(days)
+    // res.push(days)
     res.render('student', { days, allFellows, allSubjects, allTimeRotations, selected: { min, max, rot, subj, fellow }, success});
   } catch (err) {
     res.status(500).send('Server Error ' + err);
@@ -411,7 +416,7 @@ const assignmentToDate = async (req, res, assignments) => {
                 faculty: e.faculty
               })
               console.log(newDate)
-               newDate.save()
+              newDate.save()
             }
 
             
@@ -458,6 +463,7 @@ const assignmentToDate = async (req, res, assignments) => {
 export const assignmentCsvToJson = async (req, res) => {
   try {
     const why = await CalDate.deleteMany({})
+    await Fellows.deleteMany({})
 
       // Shift,Fellows,Email,Faculty,Subjects
       // Day, Date
@@ -494,6 +500,19 @@ export const assignmentCsvToJson = async (req, res) => {
           currSubjects = currLine[4].replace('\r', "").replace('\n', "")
           currSubjects = [currSubjects]
         }
+        console.log({
+          fellow: fellows,
+          subjects: currSubjects,
+          email: currLine[2]
+        })
+        const fellowDone = new Fellows({
+          name: fellows,
+          subjects: currSubjects,
+          email: currLine[2]
+        })
+        console.log(fellowDone)
+        await fellowDone.save()
+
         const currObj = {
           timeRotation: currLine[0],
           fellows,
@@ -507,6 +526,47 @@ export const assignmentCsvToJson = async (req, res) => {
         
         
       }
+      // 🔑 Combine duplicates by timeRotation
+      const grouped = {};
+      result.forEach((entry) => {
+        const key = entry.timeRotation;
+
+        if (!grouped[key]) {
+          grouped[key] = {
+            timeRotation: entry.timeRotation,
+            fellows: [],
+            subjects: [],
+            faculty: entry.faculty, // stays single unless you want array
+          };
+        }
+
+        // merge fellows (dedupe)
+        if (!Array.isArray(entry.fellows)) {
+          grouped[key].fellows.push(entry.fellows)
+        }
+        else {
+          entry.fellows.forEach((f) => {
+            if (!grouped[key].fellows.includes(f)) {
+              grouped[key].fellows.push(f);
+            }
+        });
+          
+        }
+       
+
+        // merge subjects (dedupe)
+        entry.subjects.forEach((s) => {
+          if (!grouped[key].subjects.includes(s)) {
+            grouped[key].subjects.push(s);
+          }
+        });
+      });
+
+      const mergedResult = Object.values(grouped);
+
+      // now use mergedResult downstream
+      console.log("Merged result:", mergedResult);
+
       console.log("start set constants")
       const fakeAllSubjects = []
       result.forEach((day) => {
@@ -554,9 +614,9 @@ export const assignmentCsvToJson = async (req, res) => {
 
       console.log("Saved constants to Mongo");
 
-      const answer = await assignmentToDate(req, res, result)
+      const answer = await assignmentToDate(req, res, mergedResult)
       
-      // res.send(result)
+      // res.send(mergedResult)
     });
 
   } catch (err) {

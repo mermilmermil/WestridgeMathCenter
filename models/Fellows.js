@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const fellowSchema = new mongoose.Schema({
-  fellow: {
-    type: Array,
+  name: {
+    type: String,
     required: true,
   },
   subjects: {
