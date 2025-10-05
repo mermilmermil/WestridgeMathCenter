@@ -18,7 +18,8 @@ export const loadHome = async (req, res) => {
 
 export const loadFellow = async (req, res) => {
   try {
-    const today = new Date("2025-5-1")
+    // const today = new Date("2025-5-1")
+    const today = new Date()
     today.setHours(0,0,0,0)
 
     const constants = await Constants.findOne(); 
@@ -75,58 +76,69 @@ export const loadDahl = async (req, res) => {
 
 export const loadStudent = async (req, res) => {
   try {
-    // const today = new Date()
-    const today = new Date("2025-5-1")
+    const today = new Date()
+    // const today = new Date("2025-5-1")
     today.setHours(0,0,0,0)
 
-
-    const min = req.query.min || ""
-    const max = req.query.max || ""
-    
-    const rot = req.query.timeRotation || "all"
-    const subj = req.query.subject
-    const fellow = req.query.fellow || "all"
-
-    const success = req.query.success === "true"
-    if (subj) {
-      await Fellows.find({subjects: subj})
-      
-    }
-    console.log(subj)
     const constants = await Constants.findOne(); // just one doc (hopefully)
 
     const allFellows = constants.fellows
     const allSubjects = constants.subjects
     const allTimeRotations = constants.timeRotations
 
+    const min = req.query.min || today
+    const max = req.query.max || ""
+    
+    
+    
+    const rot = req.query.timeRotation || "all"
+    const subj = req.query.subject
+    // const fellow = req.query.fellow || "all"sc 
+
+    const success = req.query.success === "true"
+    console.log(subj)
+    let fellow = ''
+    if (allSubjects.includes(subj)) {
+      const filterFellow = await Fellows.find({subjects: subj})
+      fellow = filterFellow.map(fellow => {
+        return fellow.name
+      })
+
+    }
+    else {
+      fellow = req.query.fellow || "all"
+    }
+    console.log(fellow)
+    
+ 
     // Build Mongo query
     const query = {
       subjects: subj || "",
     };
-    if (fellow !== "all") {query.available = fellow}
+    if (fellow !== "all") {query.available = { $in: fellow }}
     if (rot !== "all") {query.timeRotation = rot}
     
     if (min !== "") {query.date = { $gte: min}}
-    if (max !== "") {query.date = { $lte: max}}
-    if (min !== "" && max !== "") {query.date = { $gte: min, $lte: max}}
+    if (max !== "") {query.date = { $lte: max + "T23:59:59.999Z"}}
+    if (min !== "" && max !== "") {query.date = { $gte: min, $lte: max + "T23:59:59.999Z"}}
     // if (subj !== "all") query.subjects = subj;   // assuming subjects is an array
     // if (fellow !== "all") query.available = fellow; // assuming available is an array
 
     // Fetch filtered appointments
     const days = await CalDate.find(query).sort({ date: 1})
-    console.log(days)
-    // res.push(days)
+    // console.log(days)
+
     res.render('student', { days, allFellows, allSubjects, allTimeRotations, selected: { min, max, rot, subj, fellow }, success});
   } catch (err) {
-    res.status(500).send('Server Error ' + err);
+    res.status(500).send('Server Error \n' + err);
   }
 };
 
 export const loadTeacher = async (req, res) => {
   try {
-    // const today = new Date()
+    const today = new Date()
     // maybe cutoff 8:40
-    const today = new Date("2025-5-1")
+    // const today = new Date("2025-5-1")x
     today.setHours(0,0,0,0)
 
     const constants = await Constants.findOne(); 

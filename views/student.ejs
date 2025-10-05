@@ -166,62 +166,64 @@
 
             <div class="card" >
               <ul class="list-group list-group-flush">
-                 <% day.available.forEach((fellow, i) => { %>
-                  <li class="list-group-item">
-                    <strong><%= fellow %></strong>  
-                    <button type="button" 
-                            class="btn btn-primary" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
-                      Schedule Meeting
-                    </button>
-                  </li>
+                 <% day.available.forEach((fellow, i) => { 
+                    if (selected.fellow.includes(fellow)) { %>
+                      
+                    <li class="list-group-item">
+                      <strong><%= fellow %></strong>  
+                      <button type="button" 
+                              class="btn btn-primary" 
+                              data-bs-toggle="modal" 
+                              data-bs-target="#exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
+                        Schedule Meeting
+                      </button>
+                    </li>
 
-                  <div class="modal fade" 
-                      id="exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
-                      tabindex="-1" 
-                      aria-labelledby="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
-                      aria-hidden="true">
+                    <div class="modal fade" 
+                        id="exampleModal<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
+                        tabindex="-1" 
+                        aria-labelledby="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>" 
+                        aria-hidden="true">
 
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" 
-                              id="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
-                            Schedule a Meeting with <%= fellow %>
-                          </h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" 
+                                id="exampleModalLabel<%= safeId(fellow) %>_<%= i %>_<%= day.date.getTime() %>">
+                              Schedule a Meeting with <%= fellow %>
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+
+                          <form action="/scheduleMeeting" method="POST"
+                                onsubmit="return confirm('Confirm meeting with <%= fellow %> at <%= day.date.toDateString() %> for <%= selected.subj %>')">
+                            <div class="modal-body">
+                              
+                              <input type="hidden" name="fellow" value="<%= fellow %>">
+                              <input type="hidden" name="subject" value="<%= selected.subj %>">
+                              <input type="hidden" name="id" value="<%= day._id %>">
+                              <input type="hidden" name="date" value="<%= day.date.toISOString() %>">
+                              
+                              <label for="student_<%= i %>_<%= day.date.getTime() %>">Your name</label><br>
+                              <input type="text" id="student_<%= i %>_<%= day.date.getTime() %>" name="student" required><br>
+
+                              <label for="email_<%= i %>_<%= day.date.getTime() %>">Your Westridge email</label><br>
+                              <input type="email" id="email_<%= i %>_<%= day.date.getTime() %>" name="studentEmail" required><br>
+
+                              <label for="details_<%= i %>_<%= day.date.getTime() %>">Any extra notes</label><br>
+                              <textarea style="height: 80px;" id="details_<%= i %>_<%= day.date.getTime() %>" name="details" placeholder="eg. Textbook pages, specific sections, etc."></textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Schedule Meeting</button>
+                            </div>
+                          </form>
                         </div>
-
-                        <form action="/scheduleMeeting" method="POST"
-                              onsubmit="return confirm('Confirm meeting with <%= fellow %> at <%= day.date.toDateString() %> for <%= selected.subj %>')">
-                          <div class="modal-body">
-                            
-                            <input type="hidden" name="fellow" value="<%= fellow %>">
-                            <input type="hidden" name="subject" value="<%= selected.subj %>">
-                            <input type="hidden" name="id" value="<%= day._id %>">
-                            <input type="hidden" name="date" value="<%= day.date.toISOString() %>">
-                            
-                            <label for="student_<%= i %>_<%= day.date.getTime() %>">Your name</label><br>
-                            <input type="text" id="student_<%= i %>_<%= day.date.getTime() %>" name="student" required><br>
-
-                            <label for="email_<%= i %>_<%= day.date.getTime() %>">Your Westridge email</label><br>
-                            <input type="email" id="email_<%= i %>_<%= day.date.getTime() %>" name="studentEmail" required><br>
-
-                            <label for="details_<%= i %>_<%= day.date.getTime() %>">Any extra notes</label><br>
-                            <textarea style="height: 80px;" id="details_<%= i %>_<%= day.date.getTime() %>" name="details" placeholder="eg. Textbook pages, specific sections, etc."></textarea>
-                          </div>
-
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Schedule Meeting</button>
-                          </div>
-                        </form>
                       </div>
                     </div>
-                  </div>
 
-                <% }) %>
+                <% }}) %>
                 
               </ul>
               

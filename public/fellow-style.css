@@ -7,3 +7,12 @@ body {
   background-color: #ffffff;
   padding-bottom: 3rem;
 }
+
+#no-matches {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  height: auto;
+  /* background-color: black; */
+  padding-top: 18%;
+}

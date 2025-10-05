@@ -28,7 +28,7 @@
     <a href="/" id="logo-a">
       <img src="https://www.westridge.org/uploaded/images/smallLogo.png" alt="westridge logo" id="logo">
     </a>
-    <% const today = new Date("2025-5-13")
+    <% const today = new Date()
     today.setHours(0,0,0,0)
     const tomorrow = new Date(today)
     tomorrow.setDate(today.getDate() + 1)
@@ -43,10 +43,10 @@
     const rotation = ["1", "2", "3", "4", "5", "6"]
   %>
 
-  <a href="fellow?min=<%= today %>&max=<%= tomorrow %>"><button>Today</button></a>
-  <a href="fellow?min=<%= today %>&max=<%= endWeek %>"><button>This Week</button></a>
+  <a href="teacher?min=<%= today %>&max=<%= tomorrow %>"><button>Today</button></a>
+  <a href="teacher?min=<%= today %>&max=<%= endWeek %>"><button>This Week</button></a>
 
-  <form action="fellow" method="GET" class="d-flex flex-wrap align-items-center gap-3">
+  <form action="teacher" method="GET" class="d-flex flex-wrap align-items-center gap-3">
     <div class="form-group d-flex align-items-center">
       <label for="start-date" class="me-2">Start</label>
       <input 
@@ -86,7 +86,14 @@
     
   </nav>
 
-  
+  <% if (days.length < 1) { %>
+    <div id="no-matches">
+      <h2 >There are no days that match this criteria</h2>
+    </div>
+      
+      
+    
+  <% } %>
   <div class="accordion" id="accordionExample">
     <% days.forEach((day, i) => { %>
       <div class="accordion-item">
