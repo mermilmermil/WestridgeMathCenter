@@ -17,7 +17,7 @@ router.get('/teacher/deleteAbs/:idFellow/:idName', delAbsent)
 router.post('/scheduleMeeting', scheduleMeeting)
 router.post('/removeMeeting', removeMeeting)
 
-router.get('/populate1234', assignmentCsvToJson)
+router.get('/populate', assignmentCsvToJson)
 
 
 
